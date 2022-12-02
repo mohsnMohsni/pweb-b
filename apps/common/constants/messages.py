@@ -1,0 +1,5 @@
+THIS_FIELD_IS_REQUIRED = 'این فیلد اجباری است'
+NATIONAL_CODE_NOT_VALID = 'کد ملی معتبر نیست!'
+PHONE_NUMBER_NOT_VALID = 'شماره همراه معتبر نیست!'
+FULLNAME_SHOULD_BE_PERSIAN = 'نام و نام خانوادگی باید به فارسی باشد'
+YEAR_OF_BIRTHDATE_MUST_BE_BETWEEN_1921_AND_NOW = 'سال تولد باید بین سال های 1301 تا امسال باشد.'
