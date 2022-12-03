@@ -15,6 +15,4 @@ COPY . .
 
 EXPOSE 8000
 
-RUN export DJANGO_ENV=production
-
 ENTRYPOINT ["./scripts/entrypoint.sh"]

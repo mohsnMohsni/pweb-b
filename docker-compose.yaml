@@ -7,6 +7,7 @@ services:
     ports:
       - 8000:8000
     environment:
+      DJANGO_ENV: production
       DEFAULT_DB_NAME: postgres
       DEFAULT_DB_USER: postgres
       DEFAULT_DB_PASSWD: hello
