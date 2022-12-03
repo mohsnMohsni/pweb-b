@@ -17,4 +17,4 @@ EXPOSE 8000
 
 RUN export DJANGO_ENV=production
 
-ENTRYPOINT ["./app/entrypoint.sh"]
+ENTRYPOINT ["./scripts/entrypoint.sh"]
