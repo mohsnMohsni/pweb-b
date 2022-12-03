@@ -12,7 +12,6 @@ from rest_framework.authentication import SessionAuthentication
 
 
 def lazy_schema_generator(app_name: str):
-
     class SchemaGenerator(OpenAPISchemaGenerator):
         def coerce_path(self, path, view):
             _ = super().coerce_path(path, view)
@@ -35,8 +34,12 @@ schema_view = get_schema_view(
         default_version='v1',
     ),
     public=True,
-    authentication_classes=[SessionAuthentication,],
-    permission_classes=[IsAuthenticated,],
+    authentication_classes=[
+        SessionAuthentication,
+    ],
+    permission_classes=[
+        IsAuthenticated,
+    ],
 )
 
 
@@ -51,8 +54,12 @@ for app in LOCAL_APPS:
             description="swagger docs",
         ),
         public=True,
-        authentication_classes=[SessionAuthentication,],
-        permission_classes=[IsAuthenticated,],
+        authentication_classes=[
+            SessionAuthentication,
+        ],
+        permission_classes=[
+            IsAuthenticated,
+        ],
         generator_class=lazy_schema_generator(app),
         urlconf=f'apps.{app}.urls',
     )
@@ -87,9 +94,7 @@ class RedocIndexAPIView(APIView):
 
     def get(self, request) -> Response:
         base_path: str = '{}://{}'.format(request.scheme, request.get_host())
-        return Response(
-            {app: f'{base_path}/redoc/{app}/' for app in LOCAL_APPS}
-        )
+        return Response({app: f'{base_path}/redoc/{app}/' for app in LOCAL_APPS})
 
 
 urlpatterns = [

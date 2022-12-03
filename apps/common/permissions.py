@@ -6,6 +6,7 @@ class CustomPermission(BasePermission):
     """
     Custom Permission.
     """
+
     message = 'You don\'t have permission to access.'
 
     def has_permission(self, request, view) -> bool:

@@ -35,7 +35,6 @@ class AbstractSoftDeleteModel(models.Model):
         self.deleted: bool = False
         self.save()
 
-
     def __getattribute__(self, item):
         _item = super().__getattribute__(item)
         if isinstance(_item, AbstractSoftDeleteModel) and _item.deleted:

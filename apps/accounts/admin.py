@@ -34,7 +34,6 @@ class PermissionAdmin(admin.ModelAdmin):
 
 @admin.register(Group)
 class GroupAdmin(CoreGroupAdmin):
-
     def __init__(self, model, admin_site):
         model._meta.app_label = 'accounts'
         super().__init__(model, admin_site)
@@ -46,7 +45,10 @@ class UserAdmin(CoreUserAdmin):
     list_filter = ('is_staff', 'groups')
     search_fields = ('username', 'full_name')
     readonly_fields = ('last_login', 'date_joined')
-    autocomplete_fields = ('groups', 'user_permissions',)
+    autocomplete_fields = (
+        'groups',
+        'user_permissions',
+    )
     fieldsets = (
         (
             _('Auth'),

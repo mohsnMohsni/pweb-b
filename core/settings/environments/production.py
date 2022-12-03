@@ -1,6 +1,9 @@
 # Standard imports
 import os
+from pathlib import Path
 
+
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 SECRET_KEY = 'django-insecure-*gaqx96fy!uwj#oi$k4jcg4q5(a&!qm1&%5$rv)q=68fx7w=q('
 
@@ -15,7 +18,7 @@ DATABASES = {
         'USER': os.environ.get("DEFAULT_DB_USER"),
         'PASSWORD': os.environ.get("DEFAULT_DB_PASSWD"),
         'HOST': os.environ.get("DEFAULT_DB_HOST"),
-        'PORT': os.environ.get("DEFAULT_DB_PORT", "5432")
+        'PORT': os.environ.get("DEFAULT_DB_PORT", "5432"),
     }
 }
 
@@ -33,3 +36,8 @@ CACHES = {
 
 CELERY_BROKER_URL = 'redis://localhost:6379'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+
+STATIC_URL = '/static/'
+
+MEDIA_ROOT = BASE_DIR / 'media/'
+MEDIA_URL = '/media/'
