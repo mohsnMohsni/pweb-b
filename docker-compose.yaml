@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  backend:
+    build: .
+    container_name: backend-django
+    ports:
+      - 8000:8000
+    environment:
+      DEFAULT_DB_NAME: postgres
+      DEFAULT_DB_USER: postgres
+      DEFAULT_DB_PASSWD: hello
+
+  postgresdb:
+    build: ./postgresql
+    container_name: postgres-db
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: hello

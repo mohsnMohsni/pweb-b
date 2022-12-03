@@ -1,12 +1,20 @@
 FROM python:3.10
+
+WORKDIR /app
+
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
-WORKDIR /code
-COPY requirements.txt /code/
+
+COPY ./requirements ./requirements
+
+RUN pip install --upgrade pip --no-warn-script-location; pip install wheel
+RUN pip install -r requirements/production.txt --user --no-warn-script-location
 RUN pip install gunicorn==20.1.0
-RUN pip install -r requirements/production.txt
-COPY . /code/
+
+COPY . .
+
 EXPOSE 8000
-HEALTHCHECK --interval=12s --timeout=12s --start-period=5s \
-CMD python manage.py test
-CMD ["sh", "/code/migrate_run.sh"]
+
+RUN export DJANGO_ENV=production
+
+ENTRYPOINT ["/app/entrypoint.sh"]

@@ -10,11 +10,12 @@ ALLOWED_HOSTS = ['*']
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(locals()['BASE_DIR'], "db.sqlite3"),
-        'TEST': {
-            'NAME': os.path.join(locals()['BASE_DIR'], "test.sqlite3"),
-        },
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get("DEFAULT_DB_NAME"),
+        'USER': os.environ.get("DEFAULT_DB_USER"),
+        'PASSWORD': os.environ.get("DEFAULT_DB_PASSWD"),
+        'HOST': os.environ.get("DEFAULT_DB_HOST"),
+        'PORT': os.environ.get("DEFAULT_DB_PORT", "5432")
     }
 }
 
