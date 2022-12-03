@@ -7,7 +7,7 @@ from django.contrib.auth.admin import (
 )
 from django.contrib.auth.models import Group, Permission
 
-from .models import User
+from .models import User, VerificationCodeModel
 
 
 admin.site.unregister(Group)
@@ -18,25 +18,19 @@ admin.site.empty_value_display = _('unknown')
 class PermissionAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 
-    def __init__(self, model, admin_site):
-        model._meta.app_label = 'accounts'
-        super().__init__(model, admin_site)
-
-    def has_change_permission(self, request, obj=None):
+    def has_delete_permission(self, request, obj=None) -> bool:
         return False
 
-    def has_delete_permission(self, request, obj=None):
+    def has_change_permission(self, request, obj=None) -> bool:
         return False
 
-    def has_add_permission(self, request):
+    def has_add_permission(self, request) -> bool:
         return False
 
 
 @admin.register(Group)
 class GroupAdmin(CoreGroupAdmin):
-    def __init__(self, model, admin_site):
-        model._meta.app_label = 'accounts'
-        super().__init__(model, admin_site)
+    autocomplete_fields = ('permissions',)
 
 
 @admin.register(User)
@@ -45,10 +39,7 @@ class UserAdmin(CoreUserAdmin):
     list_filter = ('is_staff', 'groups')
     search_fields = ('username', 'full_name')
     readonly_fields = ('last_login', 'date_joined')
-    autocomplete_fields = (
-        'groups',
-        'user_permissions',
-    )
+    autocomplete_fields = ('groups', 'user_permissions')
     fieldsets = (
         (
             _('Auth'),
@@ -87,3 +78,10 @@ class UserAdmin(CoreUserAdmin):
             },
         ),
     )
+
+
+@admin.register(VerificationCodeModel)
+class VerificationCodeModelAdmin(admin.ModelAdmin):
+    list_display = ('phone_number', 'code')
+    search_fields = ('phone_number',)
+    readonly_fields = ('ip',)

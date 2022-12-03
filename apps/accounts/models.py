@@ -1,6 +1,5 @@
 # Core imports.
 from django.db import models
-from django.utils.functional import cached_property
 from django.contrib.auth.models import AbstractUser
 
 # Local imports.
