@@ -5,7 +5,7 @@ services:
     build: .
     container_name: backend-django
     ports:
-      - "8000:8000"
+      - "127.0.0.1:8000:8000"
     environment:
       DJANGO_ENV: production
       DEFAULT_DB_NAME: postgres
@@ -17,7 +17,7 @@ services:
     container_name: postgres-db
     restart: always
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"
     volumes:
       - /var/lib/postgresql/data:/var/lib/postgresql/data/
     environment:
