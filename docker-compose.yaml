@@ -8,9 +8,10 @@ services:
       - "8000:8000"
     environment:
       DJANGO_ENV: production
+      DEFAULT_DB_HOST: postgresdb
       DEFAULT_DB_NAME: postgres
       DEFAULT_DB_USER: postgres
-      DEFAULT_DB_PASSWD: hello
+      DEFAULT_DB_PASSWD: postgres
 
   postgresdb:
     build: ./postgresql
@@ -19,6 +20,6 @@ services:
     ports:
       - "127.0.0.1:5432:5432"
     volumes:
-      - /var/run/postgresql:/var/run/postgresql
+      - postgres_data:/var/lib/postgresql/data/
     environment:
       POSTGRES_PASSWORD: hello
