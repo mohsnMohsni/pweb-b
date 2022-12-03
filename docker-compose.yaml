@@ -10,7 +10,7 @@ services:
       DJANGO_ENV: production
       DEFAULT_DB_NAME: postgres
       DEFAULT_DB_USER: postgres
-      DEFAULT_DB_PASSWD: postgres
+      DEFAULT_DB_PASSWD: hello
 
   postgresdb:
     build: ./postgresql
