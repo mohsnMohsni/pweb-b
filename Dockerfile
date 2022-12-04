@@ -9,7 +9,7 @@ COPY ./requirements ./requirements
 
 RUN pip install --upgrade pip --no-warn-script-location; pip install wheel
 RUN pip install -r requirements/production.txt --user --no-warn-script-location
-RUN pip install gunicorn==20.1.0
+RUN pip install gunicorn
 
 COPY . .
 
