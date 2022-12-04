@@ -1,3 +1,5 @@
+import os
+
 # Third-party imports.
 from celery import shared_task
 from kavenegar import APIException, KavenegarAPI, HTTPException
@@ -7,7 +9,7 @@ from kavenegar import APIException, KavenegarAPI, HTTPException
 def send_sms(params: dict) -> str:
     try:
         params['type']: str = 'sms'
-        api: KavenegarAPI = KavenegarAPI('kavenegar api')
+        api: KavenegarAPI = KavenegarAPI(os.getenv('KAVENEGAR_API'))
         api.verify_lookup(params)
         return 'sms sent to {}'.format(params.get('receptor'))
     except APIException as e:

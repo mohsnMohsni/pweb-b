@@ -2,7 +2,7 @@
 import os
 
 
-SECRET_KEY = 'django-insecure-*gaqx96fy!uwj#oi$k4jcg4q5(a&!qm1&%5$rv)q=68fx7w=q('
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = False
 

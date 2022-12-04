@@ -9,7 +9,7 @@ services:
     volumes:
       - /var/lib/postgresql/data:/var/lib/postgresql/data/
     environment:
-      POSTGRES_PASSWORD: hello
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
 
   redis:
     build: ./redis
@@ -24,4 +24,4 @@ services:
       DJANGO_ENV: production
       DEFAULT_DB_NAME: postgres
       DEFAULT_DB_USER: postgres
-      DEFAULT_DB_PASSWD: hello
+      DEFAULT_DB_PASSWD: ${POSTGRES_PASSWORD}
