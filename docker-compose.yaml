@@ -1,17 +1,6 @@
 version: '3.8'
 
 services:
-  backend:
-    build: .
-    container_name: backend-django
-    ports:
-      - "127.0.0.1:8000:8000"
-    environment:
-      DJANGO_ENV: production
-      DEFAULT_DB_NAME: postgres
-      DEFAULT_DB_USER: postgres
-      DEFAULT_DB_PASSWD: hello
-
   postgresdb:
     build: ./postgresql
     container_name: postgres-db
@@ -22,3 +11,20 @@ services:
       - /var/lib/postgresql/data:/var/lib/postgresql/data/
     environment:
       POSTGRES_PASSWORD: hello
+
+  redis:
+    build: ./redis
+    container_name: redis-db
+    ports:
+      - "127.0.0.1:6379:6379"
+
+  backend:
+    build: .
+    container_name: backend-django
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      DJANGO_ENV: production
+      DEFAULT_DB_NAME: postgres
+      DEFAULT_DB_USER: postgres
+      DEFAULT_DB_PASSWD: hello
