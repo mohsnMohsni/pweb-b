@@ -3,7 +3,6 @@ version: '3.8'
 services:
   postgresdb:
     build: ./postgresql
-    container_name: postgres-db
     restart: always
     ports:
       - "127.0.0.1:5432:5432"
@@ -14,13 +13,11 @@ services:
 
   redis:
     build: ./redis
-    container_name: redis-db
     ports:
       - "127.0.0.1:6379:6379"
 
   backend:
     build: .
-    container_name: backend-django
     ports:
       - "127.0.0.1:8000:8000"
     environment:
