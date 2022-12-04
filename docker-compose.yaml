@@ -9,7 +9,7 @@ services:
     volumes:
       - /var/lib/postgresql/data:/var/lib/postgresql/data/
     env_file:
-      - ./envs/.env.production
+      - ./envs/.env.database
 
   redis:
     build: ./redis
