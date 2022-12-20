@@ -8,8 +8,8 @@ services:
       - "127.0.0.1:5432:5432"
     volumes:
       - /var/lib/postgresql/data:/var/lib/postgresql/data/
-    env_file:
-      - ./envs/.env.database
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
 
   redis:
     build: ./redis
@@ -21,6 +21,9 @@ services:
     ports:
       - "127.0.0.1:8000:8000"
     environment:
-      DJANGO_ENV: production
-    env_file:
-      - ./envs/.env.production
+      - DJANGO_ENV=${DJANGO_ENV}
+      - SECRET_KEY=${SECRET_KEY}
+      - POSTGRES_NAME=${POSTGRES_NAME}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - KAVENEGAR_API=${KAVENEGAR_API}

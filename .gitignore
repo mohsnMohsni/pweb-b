@@ -18,4 +18,3 @@ venv/
 # env
 .env.development
 .env.production
-.env.database
