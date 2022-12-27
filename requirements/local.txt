@@ -7,3 +7,6 @@ mypy==0.991
 
 # Env
 python-dotenv==0.21.0
+
+# Shell
+ipython==8.7.0
